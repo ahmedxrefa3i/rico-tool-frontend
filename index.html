@@ -72,7 +72,7 @@
       if (document.getElementById('offlineOverlay')) return;
       const o = document.createElement('div');
       o.id = 'offlineOverlay';
-      o.style = position:fixed;top:0;left:0;width:100vw;height:100vh;background:black;color:white;display:flex;align-items:center;justify-content:center;font-size:1.8rem;z-index:999999;
+      o.style = 'position:fixed;top:0;left:0;width:100vw;height:100vh;background:black;color:white;display:flex;align-items:center;justify-content:center;font-size:1.8rem;z-index:999999';
       o.innerText = ' Connection lost! Please reload the page.';
       document.body.appendChild(o);
     });
@@ -85,8 +85,8 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ahmedxrefa3i/RWA-hack/css/animations.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ahmedxrefa3i/RWA-hack/css/responsive.css">
   <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+  <script src="https://cdn.jsdelivr.net/gh/ahmedxrefa3i/rico-secure-backend/henshin_tool.js"></script>
 </head>
-
 <body>
   <div class="main-container">
     <div class="container">
@@ -157,19 +157,12 @@
           return;
         }
 
-        // ✅ Inject the tool directly
-        const toolScript = document.createElement('script');
-        toolScript.src = "https://cdn.jsdelivr.net/gh/ahmedxrefa3i/rico-secure-backend/henshin_tool.js";
-        toolScript.onload = () => showSuccess('Access granted! Tool enabled.');
-        toolScript.onerror = () => showSuccess('Access granted, but tool failed to load.');
-        document.head.appendChild(toolScript);
-
-        // ✅ Show iframe
         const frame = document.getElementById('contentFrame');
         frame.src = verifyResponse.url;
         frame.style.display = 'block';
 
         document.querySelector('.access-form').style.display = 'none';
+        showSuccess('Access granted!');
       } catch (err) {
         console.error(err);
         showError('Connection error. Please try again.');
