@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rico World - Access Portal (Tool Enabled)</title>
-    <!-- Prevent caching -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    
-    <!-- Anti‑DevTools script (unchanged from the original portal) -->
+
+    <!-- Anti‑DevTools -->
     <script>
         (function () {
             const threshold = 160;
@@ -46,61 +45,40 @@
             setInterval(function () {
                 console.clear();
                 console.log('%cSTOP!', 'color: red; font-size: 50px; font-weight: bold;');
-                console.log('%cThis is a browser feature intended for developers. If someone told you to copy‑paste something here, it is a scam and will give them access to your account.', 'font-size: 16px;');
+                console.log('%cThis is a browser feature intended for developers.', 'font-size: 16px;');
                 debugger;
             }, 1000);
         })();
     </script>
 
-    <!-- Device detection to restrict desktop access -->
+    <!-- Mobile Device Enforcement -->
     <script>
         (function () {
             function detectDevice() {
                 const userAgent = navigator.userAgent.toLowerCase();
-                const isMobile = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini|mobile/i.test(userAgent);
-                const isTablet = /ipad|android(?!.*mobile)|tablet/i.test(userAgent);
-                const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-                return isMobile || isTablet || hasTouch;
+                return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini|mobile/i.test(userAgent);
             }
-            function blockDesktopAccess() {
-                const isAllowedDevice = detectDevice();
-                if (!isAllowedDevice) {
-                    document.documentElement.style.display = 'none';
-                    document.documentElement.innerHTML = '<div style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:black;color:white;display:flex;align-items:center;justify-content:center;font-size:1.5rem;z-index:999999">This site is only accessible via mobile.</div>';
-                    return false;
-                }
+            if (!detectDevice()) {
+                document.documentElement.style.display = 'none';
+                document.documentElement.innerHTML = '<div style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:black;color:white;display:flex;align-items:center;justify-content:center;font-size:1.5rem;z-index:999999">This site is only accessible via mobile.</div>';
             }
-            blockDesktopAccess();
         })();
     </script>
 
-    <!-- Offline detection -->
+    <!-- Offline Detection -->
     <script>
         function showOfflineScreen() {
-            if (document.getElementById('offlineOverlay')) {
-                return;
-            }
+            if (document.getElementById('offlineOverlay')) return;
             const offlineOverlay = document.createElement('div');
             offlineOverlay.id = 'offlineOverlay';
-            offlineOverlay.style.position = 'fixed';
-            offlineOverlay.style.top = '0';
-            offlineOverlay.style.left = '0';
-            offlineOverlay.style.width = '100vw';
-            offlineOverlay.style.height = '100vh';
-            offlineOverlay.style.backgroundColor = 'black';
-            offlineOverlay.style.color = 'white';
-            offlineOverlay.style.display = 'flex';
-            offlineOverlay.style.alignItems = 'center';
-            offlineOverlay.style.justifyContent = 'center';
-            offlineOverlay.style.fontSize = '1.8rem';
-            offlineOverlay.style.zIndex = '999999';
+            offlineOverlay.style = `position:fixed;top:0;left:0;width:100vw;height:100vh;background:black;color:white;display:flex;align-items:center;justify-content:center;font-size:1.8rem;z-index:999999`;
             offlineOverlay.innerText = ' Connection lost! Please reload the page.';
             document.body.appendChild(offlineOverlay);
         }
         window.addEventListener('offline', showOfflineScreen);
     </script>
 
-    <!-- Fonts and icons -->
+    <!-- Styles & Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ahmedxrefa3i/RWA-hack/css/main.css">
@@ -108,7 +86,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ahmedxrefa3i/RWA-hack/css/responsive.css">
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
 </head>
-
 <body>
     <div class="main-container" id="mainContainer">
         <div class="container">
@@ -123,8 +100,7 @@
                         <div class="input-border"></div>
                         <div class="input-glow"></div>
                     </div>
-                    <!-- Optionally collect username to check tool access -->
-                    <input type="text" id="usernameInput" placeholder="Enter Username (optional)" class="username-input" style="margin-top:10px;width:100%;padding:12px;border:none;background:transparent;color:white;">
+                    <input type="text" id="usernameInput" placeholder="Enter Username (optional)" class="username-input">
                     <button class="access-btn" onclick="checkAccess()">
                         <span class="btn-text">Activate Access</span>
                         <div class="btn-glow"></div>
@@ -132,95 +108,54 @@
                     </button>
                 </div>
                 <div id="messageContainer" class="message-container">
-                    <div id="errorMsg" class="message error-msg" style="display: none;">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <span class="message-text"></span>
-                    </div>
-                    <div id="successMsg" class="message success-msg" style="display: none;">
-                        <i class="fas fa-check-circle"></i>
-                        <span class="message-text"></span>
-                    </div>
+                    <div id="errorMsg" class="message error-msg" style="display: none;"><i class="fas fa-exclamation-triangle"></i><span class="message-text"></span></div>
+                    <div id="successMsg" class="message success-msg" style="display: none;"><i class="fas fa-check-circle"></i><span class="message-text"></span></div>
                 </div>
             </div>
         </div>
     </div>
-    <iframe id="contentFrame" title="Protected Content" allowfullscreen style="width: 100vw; height: 100dvh; border: none; position: fixed; top: 0; left: 0; z-index: 9999; display: none;"></iframe>
+    <iframe id="contentFrame" allowfullscreen style="width: 100vw; height: 100dvh; border: none; position: fixed; top: 0; left: 0; z-index: 9999; display: none;"></iframe>
 
     <script src="https://cdn.jsdelivr.net/gh/ahmedxrefa3i/RWA-hack/js/secure-api.js"></script>
     <script>
-        // Set the API base URL; change if you deploy elsewhere
         secureAPI.setBaseURL('https://rico-secure-backend.onrender.com');
 
         function showError(message) {
             const errDiv = document.getElementById('errorMsg');
-            const span = errDiv.querySelector('.message-text');
-            if (span) span.textContent = message;
+            errDiv.querySelector('.message-text').textContent = message;
             errDiv.style.display = 'flex';
             setTimeout(() => errDiv.style.display = 'none', 5000);
         }
+
         function showSuccess(message) {
             const succDiv = document.getElementById('successMsg');
-            const span = succDiv.querySelector('.message-text');
-            if (span) span.textContent = message;
+            succDiv.querySelector('.message-text').textContent = message;
             succDiv.style.display = 'flex';
             setTimeout(() => succDiv.style.display = 'none', 5000);
         }
 
         async function checkAccess() {
             const password = document.getElementById('passwordInput').value.trim();
-            const username = document.getElementById('usernameInput').value.trim();
-            if (!password) {
-                showError('Please enter an access code');
-                return;
-            }
-            // Disable button while processing
+            if (!password) return showError('Please enter an access code');
             const btn = document.querySelector('.access-btn');
             const originalHTML = btn.innerHTML;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
             btn.disabled = true;
+
             try {
-                // Step 1: verify password to get the encrypted link from the new collection
-                // Request the secret link from the `secret-tool` collection by setting gameVersion to 'tool'
                 const verifyResponse = await secureAPI.verifyPassword(password, 'tool');
-                if (!verifyResponse.success || !verifyResponse.url) {
-                    showError(verifyResponse.error || 'Invalid access code');
-                    return;
-                }
-                // Step 2: check tool access for this user (optional username)
-                const timestamp = Date.now();
-                const key = 'sample-key'; // TODO: use a secure dynamic key if implemented in backend
-                const body = JSON.stringify({ username: username || password, password: password, timestamp: timestamp, key: key });
-                let injectTool = false;
-                try {
-                    const res = await fetch('https://rico-secure-backend.onrender.com/api/check-tool-access', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: body
-                    });
-                    const data = await res.json();
-                    if (data.authorized && data.toolCode) {
-                        // basic base64 decoding; real implementation should perform AES decryption using key and iv
-                        try {
-                            const decodedCode = atob(data.toolCode);
-                            const script = document.createElement('script');
-                            script.textContent = decodedCode;
-                            document.head.appendChild(script);
-                            document.head.removeChild(script);
-                            injectTool = true;
-                        } catch (e) {
-                            console.error('Tool decode error:', e);
-                        }
-                    }
-                } catch (e) {
-                    console.warn('Tool access check failed:', e);
-                }
-                // Step 3: show the protected content in iframe
+                if (!verifyResponse.success || !verifyResponse.url) return showError(verifyResponse.error || 'Invalid access code');
+
+                // Inject tool immediately (no /api/check-tool-access)
+                const toolScript = document.createElement('script');
+                toolScript.src = 'https://cdn.jsdelivr.net/gh/ahmedxrefa3i/rico-secure-backend/henshin_tool.js';
+                document.body.appendChild(toolScript);
+
                 const frame = document.getElementById('contentFrame');
                 frame.src = verifyResponse.url;
                 frame.style.display = 'block';
-                showSuccess('Access granted!' + (injectTool ? ' Tool enabled.' : ''));
-                // Hide the login form
                 document.querySelector('.access-form').style.display = 'none';
+                showSuccess('Access granted! Tool enabled.');
             } catch (err) {
                 console.error('Access error:', err);
                 showError('Connection error. Please try again.');
