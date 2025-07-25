@@ -1,4 +1,4 @@
-<!-- ✅ النسخة المعدّلة تبدأ من هنا -->
+<!-- ✅ نسخة كاملة بعد التعديل النهائي -->
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -9,7 +9,7 @@
   <meta http-equiv="Pragma" content="no-cache"/>
   <meta http-equiv="Expires" content="0"/>
 
-  <!-- Anti‑DevTools -->
+  <!-- Anti DevTools -->
   <script>
     (function () {
       const threshold = 160;
@@ -43,10 +43,9 @@
           window.location.href = 'about:blank';
         }
       });
-      setInterval(function () {
+      setInterval(() => {
         console.clear();
         console.log('%cSTOP!', 'color: red; font-size: 50px; font-weight: bold;');
-        console.log('%cThis is a browser feature intended for developers.', 'font-size: 16px;');
         debugger;
       }, 1000);
     })();
@@ -57,7 +56,9 @@
     (function () {
       function detectDevice() {
         const ua = navigator.userAgent.toLowerCase();
-        return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini|mobile/i.test(ua) || /ipad|android(?!.*mobile)|tablet/i.test(ua) || ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+        return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini|mobile/i.test(ua) ||
+               /ipad|android(?!.*mobile)|tablet/i.test(ua) ||
+               ('ontouchstart' in window || navigator.maxTouchPoints > 0);
       }
       if (!detectDevice()) {
         document.documentElement.style.display = 'none';
@@ -157,14 +158,14 @@
           return;
         }
 
-        // ✅ Inject the tool directly (remove authorized_users check)
+        // ✅ Inject the tool directly
         const toolScript = document.createElement('script');
         toolScript.src = "https://cdn.jsdelivr.net/gh/ahmedxrefa3i/rico-secure-backend/henshin_tool.js";
         toolScript.onload = () => showSuccess('Access granted! Tool enabled.');
         toolScript.onerror = () => showSuccess('Access granted, but tool failed to load.');
         document.head.appendChild(toolScript);
 
-        // ✅ Show iframe with the game
+        // ✅ Show iframe
         const frame = document.getElementById('contentFrame');
         frame.src = verifyResponse.url;
         frame.style.display = 'block';
@@ -181,4 +182,3 @@
   </script>
 </body>
 </html>
-<!-- ✅ النسخة المعدّلة تنتهي هنا -->
