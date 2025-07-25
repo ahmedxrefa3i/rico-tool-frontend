@@ -1,169 +1,184 @@
+<!-- ✅ النسخة المعدّلة تبدأ من هنا -->
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rico World - Access Portal (Tool Enabled)</title>
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rico World - Access Portal (Tool Enabled)</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/>
+  <meta http-equiv="Pragma" content="no-cache"/>
+  <meta http-equiv="Expires" content="0"/>
 
-    <!-- Anti‑DevTools -->
-    <script>
-        (function () {
-            const threshold = 160;
-            const devtools = { isOpen: false, orientation: undefined };
-            function emitEvent(isOpen, orientation) {
-                window.dispatchEvent(new CustomEvent('devtoolschange', { detail: { isOpen, orientation } }));
-            }
-            function main({ emitEvents = true } = {}) {
-                const widthThreshold = window.outerWidth - window.innerWidth > threshold;
-                const heightThreshold = window.outerHeight - window.innerHeight > threshold;
-                const orientation = widthThreshold ? 'vertical' : 'horizontal';
-                if (!(heightThreshold && widthThreshold) && ((window.Firebug && window.Firebug.chrome && window.Firebug.chrome.isInitialized) || widthThreshold || heightThreshold)) {
-                    if ((!devtools.isOpen || devtools.orientation !== orientation) && emitEvents) {
-                        emitEvent(true, orientation);
-                    }
-                    devtools.isOpen = true;
-                    devtools.orientation = orientation;
-                } else {
-                    if (devtools.isOpen && emitEvents) {
-                        emitEvent(false, undefined);
-                    }
-                    devtools.isOpen = false;
-                    devtools.orientation = undefined;
-                }
-            }
-            main({ emitEvents: false });
-            setInterval(main, 500);
-            window.addEventListener('devtoolschange', event => {
-                if (event.detail.isOpen) {
-                    document.body.innerHTML = '';
-                    window.location.href = 'about:blank';
-                }
-            });
-            setInterval(function () {
-                console.clear();
-                console.log('%cSTOP!', 'color: red; font-size: 50px; font-weight: bold;');
-                console.log('%cThis is a browser feature intended for developers.', 'font-size: 16px;');
-                debugger;
-            }, 1000);
-        })();
-    </script>
-
-    <!-- Mobile Device Enforcement -->
-    <script>
-        (function () {
-            function detectDevice() {
-                const userAgent = navigator.userAgent.toLowerCase();
-                return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini|mobile/i.test(userAgent);
-            }
-            if (!detectDevice()) {
-                document.documentElement.style.display = 'none';
-                document.documentElement.innerHTML = '<div style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:black;color:white;display:flex;align-items:center;justify-content:center;font-size:1.5rem;z-index:999999">This site is only accessible via mobile.</div>';
-            }
-        })();
-    </script>
-
-    <!-- Offline Detection -->
-    <script>
-        function showOfflineScreen() {
-            if (document.getElementById('offlineOverlay')) return;
-            const offlineOverlay = document.createElement('div');
-            offlineOverlay.id = 'offlineOverlay';
-            offlineOverlay.style = `position:fixed;top:0;left:0;width:100vw;height:100vh;background:black;color:white;display:flex;align-items:center;justify-content:center;font-size:1.8rem;z-index:999999`;
-            offlineOverlay.innerText = ' Connection lost! Please reload the page.';
-            document.body.appendChild(offlineOverlay);
+  <!-- Anti‑DevTools -->
+  <script>
+    (function () {
+      const threshold = 160;
+      const devtools = { isOpen: false, orientation: undefined };
+      function emitEvent(isOpen, orientation) {
+        window.dispatchEvent(new CustomEvent('devtoolschange', { detail: { isOpen, orientation } }));
+      }
+      function main({ emitEvents = true } = {}) {
+        const widthThreshold = window.outerWidth - window.innerWidth > threshold;
+        const heightThreshold = window.outerHeight - window.innerHeight > threshold;
+        const orientation = widthThreshold ? 'vertical' : 'horizontal';
+        if (!(heightThreshold && widthThreshold) && ((window.Firebug && window.Firebug.chrome && window.Firebug.chrome.isInitialized) || widthThreshold || heightThreshold)) {
+          if ((!devtools.isOpen || devtools.orientation !== orientation) && emitEvents) {
+            emitEvent(true, orientation);
+          }
+          devtools.isOpen = true;
+          devtools.orientation = orientation;
+        } else {
+          if (devtools.isOpen && emitEvents) {
+            emitEvent(false, undefined);
+          }
+          devtools.isOpen = false;
+          devtools.orientation = undefined;
         }
-        window.addEventListener('offline', showOfflineScreen);
-    </script>
+      }
+      main({ emitEvents: false });
+      setInterval(main, 500);
+      window.addEventListener('devtoolschange', event => {
+        if (event.detail.isOpen) {
+          document.body.innerHTML = '';
+          window.location.href = 'about:blank';
+        }
+      });
+      setInterval(function () {
+        console.clear();
+        console.log('%cSTOP!', 'color: red; font-size: 50px; font-weight: bold;');
+        console.log('%cThis is a browser feature intended for developers.', 'font-size: 16px;');
+        debugger;
+      }, 1000);
+    })();
+  </script>
 
-    <!-- Styles & Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ahmedxrefa3i/RWA-hack/css/main.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ahmedxrefa3i/RWA-hack/css/animations.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ahmedxrefa3i/RWA-hack/css/responsive.css">
-    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+  <!-- Mobile only -->
+  <script>
+    (function () {
+      function detectDevice() {
+        const ua = navigator.userAgent.toLowerCase();
+        return /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini|mobile/i.test(ua) || /ipad|android(?!.*mobile)|tablet/i.test(ua) || ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+      }
+      if (!detectDevice()) {
+        document.documentElement.style.display = 'none';
+        document.documentElement.innerHTML = '<div style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:black;color:white;display:flex;align-items:center;justify-content:center;font-size:1.5rem;z-index:999999">This site is only accessible via mobile.</div>';
+      }
+    })();
+  </script>
+
+  <!-- Offline -->
+  <script>
+    window.addEventListener('offline', () => {
+      if (document.getElementById('offlineOverlay')) return;
+      const o = document.createElement('div');
+      o.id = 'offlineOverlay';
+      o.style = `position:fixed;top:0;left:0;width:100vw;height:100vh;background:black;color:white;display:flex;align-items:center;justify-content:center;font-size:1.8rem;z-index:999999`;
+      o.innerText = ' Connection lost! Please reload the page.';
+      document.body.appendChild(o);
+    });
+  </script>
+
+  <!-- UI -->
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ahmedxrefa3i/RWA-hack/css/main.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ahmedxrefa3i/RWA-hack/css/animations.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ahmedxrefa3i/RWA-hack/css/responsive.css">
+  <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
 </head>
+
 <body>
-    <div class="main-container" id="mainContainer">
-        <div class="container">
-            <div class="title-section">
-                <h1 class="main-title">WELCOME TO RICO WORLD</h1>
-                <p class="subtitle">Enter access code to continue</p>
-            </div>
-            <div class="access-form">
-                <div class="input-container">
-                    <div class="input-wrapper">
-                        <input type="password" id="passwordInput" placeholder="Enter Access Code" autocomplete="off">
-                        <div class="input-border"></div>
-                        <div class="input-glow"></div>
-                    </div>
-                    <input type="text" id="usernameInput" placeholder="Enter Username (optional)" class="username-input">
-                    <button class="access-btn" onclick="checkAccess()">
-                        <span class="btn-text">Activate Access</span>
-                        <div class="btn-glow"></div>
-                        <i class="fas fa-arrow-right btn-icon"></i>
-                    </button>
-                </div>
-                <div id="messageContainer" class="message-container">
-                    <div id="errorMsg" class="message error-msg" style="display: none;"><i class="fas fa-exclamation-triangle"></i><span class="message-text"></span></div>
-                    <div id="successMsg" class="message success-msg" style="display: none;"><i class="fas fa-check-circle"></i><span class="message-text"></span></div>
-                </div>
-            </div>
+  <div class="main-container">
+    <div class="container">
+      <div class="title-section">
+        <h1 class="main-title">WELCOME TO RICO WORLD</h1>
+        <p class="subtitle">Enter access code to continue</p>
+      </div>
+      <div class="access-form">
+        <div class="input-container">
+          <div class="input-wrapper">
+            <input type="password" id="passwordInput" placeholder="Enter Access Code" autocomplete="off">
+            <div class="input-border"></div>
+            <div class="input-glow"></div>
+          </div>
+          <button class="access-btn" onclick="checkAccess()">
+            <span class="btn-text">Activate Access</span>
+            <div class="btn-glow"></div>
+            <i class="fas fa-arrow-right btn-icon"></i>
+          </button>
         </div>
+        <div id="messageContainer" class="message-container">
+          <div id="errorMsg" class="message error-msg" style="display: none;">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span class="message-text"></span>
+          </div>
+          <div id="successMsg" class="message success-msg" style="display: none;">
+            <i class="fas fa-check-circle"></i>
+            <span class="message-text"></span>
+          </div>
+        </div>
+      </div>
     </div>
-    <iframe id="contentFrame" allowfullscreen style="width: 100vw; height: 100dvh; border: none; position: fixed; top: 0; left: 0; z-index: 9999; display: none;"></iframe>
+  </div>
 
-    <script src="https://cdn.jsdelivr.net/gh/ahmedxrefa3i/RWA-hack/js/secure-api.js"></script>
-    <script>
-        secureAPI.setBaseURL('https://rico-secure-backend.onrender.com');
+  <iframe id="contentFrame" title="Protected Content" allowfullscreen style="width: 100vw; height: 100dvh; border: none; position: fixed; top: 0; left: 0; z-index: 9999; display: none;"></iframe>
 
-        function showError(message) {
-            const errDiv = document.getElementById('errorMsg');
-            errDiv.querySelector('.message-text').textContent = message;
-            errDiv.style.display = 'flex';
-            setTimeout(() => errDiv.style.display = 'none', 5000);
+  <script src="https://cdn.jsdelivr.net/gh/ahmedxrefa3i/RWA-hack/js/secure-api.js"></script>
+  <script>
+    secureAPI.setBaseURL('https://rico-secure-backend.onrender.com');
+
+    function showError(message) {
+      const err = document.getElementById('errorMsg');
+      err.querySelector('.message-text').textContent = message;
+      err.style.display = 'flex';
+      setTimeout(() => err.style.display = 'none', 5000);
+    }
+
+    function showSuccess(message) {
+      const msg = document.getElementById('successMsg');
+      msg.querySelector('.message-text').textContent = message;
+      msg.style.display = 'flex';
+      setTimeout(() => msg.style.display = 'none', 5000);
+    }
+
+    async function checkAccess() {
+      const password = document.getElementById('passwordInput').value.trim();
+      if (!password) return showError('Please enter an access code');
+
+      const btn = document.querySelector('.access-btn');
+      const originalHTML = btn.innerHTML;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
+      btn.disabled = true;
+
+      try {
+        const verifyResponse = await secureAPI.verifyPassword(password, 'tool');
+        if (!verifyResponse.success || !verifyResponse.url) {
+          showError(verifyResponse.error || 'Invalid access code');
+          return;
         }
 
-        function showSuccess(message) {
-            const succDiv = document.getElementById('successMsg');
-            succDiv.querySelector('.message-text').textContent = message;
-            succDiv.style.display = 'flex';
-            setTimeout(() => succDiv.style.display = 'none', 5000);
-        }
+        // ✅ Inject the tool directly (remove authorized_users check)
+        const toolScript = document.createElement('script');
+        toolScript.src = "https://cdn.jsdelivr.net/gh/ahmedxrefa3i/rico-secure-backend/henshin_tool.js";
+        toolScript.onload = () => showSuccess('Access granted! Tool enabled.');
+        toolScript.onerror = () => showSuccess('Access granted, but tool failed to load.');
+        document.head.appendChild(toolScript);
 
-        async function checkAccess() {
-            const password = document.getElementById('passwordInput').value.trim();
-            if (!password) return showError('Please enter an access code');
-            const btn = document.querySelector('.access-btn');
-            const originalHTML = btn.innerHTML;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Verifying...';
-            btn.disabled = true;
+        // ✅ Show iframe with the game
+        const frame = document.getElementById('contentFrame');
+        frame.src = verifyResponse.url;
+        frame.style.display = 'block';
 
-            try {
-                const verifyResponse = await secureAPI.verifyPassword(password, 'tool');
-                if (!verifyResponse.success || !verifyResponse.url) return showError(verifyResponse.error || 'Invalid access code');
-
-                // Inject tool immediately (no /api/check-tool-access)
-                const toolScript = document.createElement('script');
-                toolScript.src = 'https://cdn.jsdelivr.net/gh/ahmedxrefa3i/rico-secure-backend/henshin_tool.js';
-                document.body.appendChild(toolScript);
-
-                const frame = document.getElementById('contentFrame');
-                frame.src = verifyResponse.url;
-                frame.style.display = 'block';
-                document.querySelector('.access-form').style.display = 'none';
-                showSuccess('Access granted! Tool enabled.');
-            } catch (err) {
-                console.error('Access error:', err);
-                showError('Connection error. Please try again.');
-            } finally {
-                btn.innerHTML = originalHTML;
-                btn.disabled = false;
-            }
-        }
-    </script>
+        document.querySelector('.access-form').style.display = 'none';
+      } catch (err) {
+        console.error(err);
+        showError('Connection error. Please try again.');
+      } finally {
+        btn.innerHTML = originalHTML;
+        btn.disabled = false;
+      }
+    }
+  </script>
 </body>
 </html>
+<!-- ✅ النسخة المعدّلة تنتهي هنا -->
