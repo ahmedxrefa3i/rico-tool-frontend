@@ -1,36 +1,16 @@
-document.getElementById('enterBtn').addEventListener('click', async () => {
-  const code = document.getElementById('accessCode').value.trim();
-  const message = document.getElementById('message');
-
-  if (!code) {
-    message.textContent = "Access code is required.";
-    return;
-  }
-
-  message.textContent = "Verifying...";
-
-  try {
-    const response = await fetch('https://rico-secure-backend.onrender.com/verify-password', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        password: code,
-        gameVersion: 'tool'
-      })
-    });
-
-    const result = await response.json();
-
-    if (!response.ok || !result.success) {
-      message.textContent = result.error || "Verification failed.";
-      return;
-    }
-
-    message.textContent = "Access granted. Redirecting...";
-    window.location.href = result.url;
-
-  } catch (err) {
-    console.error(err);
-    message.textContent = "Connection error. Please try again.";
-  }
-});
+// Protected JavaScript - Unauthorized access prohibited
+(function() {
+    var _0xabcd = 'Ly8gQ29uc29sZSBhbmQgRGV2VG9vbHMgcHJvdGVjdGlvbgooZnVuY3Rpb24oKSB7CiAgJ3VzZSBzdHJpY3QnOwogIAogIC8vIERpc2FibGUgcmlnaHQtY2xpY2sgY29udGV4dCBtZW51CiAgZG9jdW1lbnQuYWRkRXZlbnRMaXN0ZW5lcignY29udGV4dG1lbnUnLCBmdW5jdGlvbihlKSB7CiAgICBlLnByZXZlbnREZWZhdWx0KCk7CiAgICByZXR1cm4gZmFsc2U7CiAgfSk7CiAgCiAgLy8gRGlzYWJsZSBGMTIsIEN0cmwrU2hpZnQrSSwgQ3RybCtTaGlmdCtKLCBDdHJsK1UKICBkb2N1bWVudC5hZGRFdmVudExpc3RlbmVyKCdrZXlkb3duJywgZnVuY3Rpb24oZSkgewogICAgaWYgKGUua2V5ID09PSAnRjEyJyB8fCAKICAgICAgICAoZS5jdHJsS2V5ICYmIGUuc2hpZnRLZXkgJiYgKGUua2V5ID09PSAnSScgfHwgZS5rZXkgPT09ICdKJykpIHx8CiAgICAgICAgKGUuY3RybEtleSAmJiBlLmtleSA9PT0gJ1UnKSkgewogICAgICBlLnByZXZlbnREZWZhdWx0KCk7CiAgICAgIHJldHVybiBmYWxzZTsKICAgIH0KICB9KTsKICAKICAvLyBEZXRlY3QgRGV2VG9vbHMgb3BlbmluZwogIGxldCBkZXZ0b29scyA9IHtvcGVuOiBmYWxzZSwgb3JpZW50YXRpb246IG51bGx9OwogIGNvbnN0IHRocmVzaG9sZCA9IDE2MDsKICAKICBzZXRJbnRlcnZhbChmdW5jdGlvbigpIHsKICAgIGlmICh3aW5kb3cub3V0ZXJIZWlnaHQgLSB3aW5kb3cuaW5uZXJIZWlnaHQgPiB0aHJlc2hvbGQgfHwgCiAgICAgICAgd2luZG93Lm91dGVyV2lkdGggLSB3aW5kb3cuaW5uZXJXaWR0aCA+IHRocmVzaG9sZCkgewogICAgICBpZiAoIWRldnRvb2xzLm9wZW4pIHsKICAgICAgICBkZXZ0b29scy5vcGVuID0gdHJ1ZTsKICAgICAgICBkb2N1bWVudC5ib2R5LmlubmVySFRNTCA9ICc8ZGl2IHN0eWxlPSJ0ZXh0LWFsaWduOmNlbnRlcjttYXJnaW4tdG9wOjUwcHg7Ij48aDE+QWNjZXNzIERlbmllZDwvaDE+PHA+RGV2ZWxvcGVyIHRvb2xzIGFyZSBub3QgYWxsb3dlZC48L3A+PC9kaXY+JzsKICAgICAgfQogICAgfQogIH0sIDUwMCk7CiAgCiAgLy8gQ29uc29sZSB3YXJuaW5nCiAgY29uc29sZS5jbGVhcigpOwogIGNvbnNvbGUubG9nKCclY1NUT1AhJywgJ2NvbG9yOiByZWQ7IGZvbnQtc2l6ZTogNTBweDsgZm9udC13ZWlnaHQ6IGJvbGQ7Jyk7CiAgY29uc29sZS5sb2coJyVjVGhpcyBpcyBhIGJyb3dzZXIgZmVhdHVyZSBpbnRlbmRlZCBmb3IgZGV2ZWxvcGVycy4gQWNjZXNzIGlzIHJlc3RyaWN0ZWQuJywgJ2NvbG9yOiByZWQ7IGZvbnQtc2l6ZTogMTZweDsnKTsKICAKICAvLyBPdmVycmlkZSBjb25zb2xlIG1ldGhvZHMKICBjb25zdCBub29wID0gZnVuY3Rpb24oKSB7fTsKICBbJ2xvZycsICd3YXJuJywgJ2Vycm9yJywgJ2luZm8nLCAnZGVidWcnXS5mb3JFYWNoKG1ldGhvZCA9PiB7CiAgICBjb25zb2xlW21ldGhvZF0gPSBub29wOwogIH0pOwp9KSgpOwoKZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoJ2VudGVyQnRuJykuYWRkRXZlbnRMaXN0ZW5lcignY2xpY2snLCBhc3luYyAoKSA9PiB7CiAgY29uc3QgY29kZSA9IGRvY3VtZW50LmdldEVsZW1lbnRCeUlkKCdhY2Nlc3NDb2RlJykudmFsdWUudHJpbSgpOwogIGNvbnN0IG1lc3NhZ2UgPSBkb2N1bWVudC5nZXRFbGVtZW50QnlJZCgnbWVzc2FnZScpOwoKICBpZiAoIWNvZGUpIHsKICAgIG1lc3NhZ2UudGV4dENvbnRlbnQgPSAiQWNjZXNzIGNvZGUgaXMgcmVxdWlyZWQuIjsKICAgIHJldHVybjsKICB9CgogIG1lc3NhZ2UudGV4dENvbnRlbnQgPSAiVmVyaWZ5aW5nLi4uIjsKCiAgdHJ5IHsKICAgIGNvbnN0IHJlc3BvbnNlID0gYXdhaXQgZmV0Y2goJ2h0dHBzOi8vcmljby1zZWN1cmUtYmFja2VuZC5vbnJlbmRlci5jb20vdmVyaWZ5LXBhc3N3b3JkJywgewogICAgICBtZXRob2Q6ICdQT1NUJywKICAgICAgaGVhZGVyczogeyAnQ29udGVudC1UeXBlJzogJ2FwcGxpY2F0aW9uL2pzb24nIH0sCiAgICAgIGJvZHk6IEpTT04uc3RyaW5naWZ5KHsKICAgICAgICBwYXNzd29yZDogY29kZSwKICAgICAgICBnYW1lVmVyc2lvbjogJ3Rvb2wnCiAgICAgIH0pCiAgICB9KTsKCiAgICBjb25zdCByZXN1bHQgPSBhd2FpdCByZXNwb25zZS5qc29uKCk7CgogICAgaWYgKCFyZXNwb25zZS5vayB8fCAhcmVzdWx0LnN1Y2Nlc3MpIHsKICAgICAgbWVzc2FnZS50ZXh0Q29udGVudCA9IHJlc3VsdC5lcnJvciB8fCAiVmVyaWZpY2F0aW9uIGZhaWxlZC4iOwogICAgICByZXR1cm47CiAgICB9CgogICAgbWVzc2FnZS50ZXh0Q29udGVudCA9ICJBY2Nlc3MgZ3JhbnRlZC4gUmVkaXJlY3RpbmcuLi4iOwogICAgd2luZG93LmxvY2F0aW9uLmhyZWYgPSByZXN1bHQudXJsOwoKICB9IGNhdGNoIChlcnIpIHsKICAgIG1lc3NhZ2UudGV4dENvbnRlbnQgPSAiQ29ubmVjdGlvbiBlcnJvci4gUGxlYXNlIHRyeSBhZ2Fpbi4iOwogIH0KfSk7Cg==';
+    var _0xefgh = function(data) {
+        try {
+            return atob(data);
+        } catch (e) {
+            return '';
+        }
+    };
+    
+    // Load and execute the protected code
+    var script = document.createElement('script');
+    script.textContent = _0xefgh(_0xabcd);
+    document.head.appendChild(script);
+})();
