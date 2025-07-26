@@ -1,4 +1,4 @@
-document.getElementById('enterBtn').addEventListener('click', () => {
+document.getElementById('enterBtn').addEventListener('click', async () => {
   const code = document.getElementById('accessCode').value.trim();
   const message = document.getElementById('message');
 
@@ -9,9 +9,28 @@ document.getElementById('enterBtn').addEventListener('click', () => {
 
   message.textContent = "Verifying...";
 
-  // في الربط الحقيقي، هتستبدل هذا الجزء بالتواصل مع الباك إند عبر fetch
-  setTimeout(() => {
-    message.textContent = "✔ Code accepted (this is just a placeholder)";
-    // window.location.href = "https://decoded-link.com";
-  }, 1000);
+  try {
+    const response = await fetch('https://rico-secure-backend.onrender.com/verify-password', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        password: code,
+        gameVersion: 'tool'
+      })
+    });
+
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+      message.textContent = result.error || "Verification failed.";
+      return;
+    }
+
+    message.textContent = "Access granted. Redirecting...";
+    window.location.href = result.url;
+
+  } catch (err) {
+    console.error(err);
+    message.textContent = "Connection error. Please try again.";
+  }
 });
